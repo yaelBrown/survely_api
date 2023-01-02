@@ -12,7 +12,11 @@ fastify.get('/test', (req, res) => {
 
 // Register multiple routes
 // https://stackoverflow.com/questions/57589620/how-to-assign-routes-within-a-base-route-in-fastify
-// fastify.register(require(`/${API_VER}/routes/survey/surveyroutes`), { prefix: `${API_VER}/survey`})
+fastify.register(async function surveyRoutes(fastify: { get: (arg0: string, arg1: (req: any, res: any) => Promise<{ msg: string }>) => void }, options: any) {
+  fastify.get('/', async (req, res) => {
+    return {msg: "Survey Route ok"}
+  })
+}, { prefix: `${API_VER}/survey`})
 
 fastify.listen({ port: PORT }, (err, addr) => {
   if (err) {

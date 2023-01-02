@@ -2,12 +2,11 @@
   "name": "survely_api",
   "version": "1.0.0",
   "description": "Survely API - Fastly API impl",
-  "main": "dist/server.js",
+  "main": "src/server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsx -p tsconfig.json -w",
-    "dev": "cd src && nodemon server.ts",
-    "start": "cd src && node server.ts"
+    "dev": "cd src && nodemon server.js",
+    "start": "cd src && node server.js"
   },
   "repository": {
     "type": "git",
@@ -21,11 +20,11 @@
   },
   "homepage": "https://github.com/yaelBrown/survely_api#readme",
   "dependencies": {
-    "fastify": "^4.10.2"
+    "fastify": "^4.11.0"
   },
   "devDependencies": {
-    "concurrently": "^7.6.0",
     "@types/node": "^18.11.18",
+    "concurrently": "^7.6.0",
     "typescript": "^4.9.4"
   }
 }

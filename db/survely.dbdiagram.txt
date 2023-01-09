@@ -44,7 +44,7 @@ Table groups_meta {
 
 Table surveys {
   id int [pk]
-  surveyor_id int
+  surveyor_user_id int
   surveyor_group_id int
   survey_name varchar
   survey_date datetime
@@ -64,10 +64,21 @@ Table survey_responses {
   responded_date datetime
 }
 
+Table surveyee_list {
+  id int [pk]
+  surveyor_user_id int
+  surveyor_group_id int
+  surveyee_text json
+  surveyee_whatsapp json
+  surveyee_email json
+}
+
 Ref: "users"."id" - "users_groups"."user_id"
 Ref: "users"."id" - "users_meta"."user_id"
+Ref: "users"."id" - "surveyee_list"."surveyor_user_id"
 Ref: "users_groups"."groups_id" - "groups"."id"
-Ref: "users"."id" < "surveys"."surveyor_id"
+Ref: "users"."id" < "surveys"."surveyor_user_id"
 Ref: "groups"."id" < "surveys"."surveyor_group_id"
 Ref: "groups"."id" - "groups_meta"."groups_id"
+Ref: "groups"."id" - "surveyee_list"."surveyor_group_id"
 Ref: "surveys"."id" < "survey_responses"."survey_id"

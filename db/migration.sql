@@ -44,7 +44,7 @@ CREATE TABLE `groups_meta` (
 
 CREATE TABLE `surveys` (
   `id` int PRIMARY KEY,
-  `surveyor_id` int,
+  `surveyor_user_id` int,
   `surveyor_group_id` int,
   `survey_name` varchar(255),
   `survey_date` datetime,
@@ -64,10 +64,29 @@ CREATE TABLE `survey_responses` (
   `responded_date` datetime
 );
 
+CREATE TABLE `surveyee_list` (
+  `id` int PRIMARY KEY,
+  `surveyor_user_id` int,
+  `surveyor_group_id` int,
+  `surveyee_text` json,
+  `surveyee_whatsapp` json,
+  `surveyee_email` json
+);
+
 ALTER TABLE `users_groups` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
 ALTER TABLE `users_meta` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+ALTER TABLE `surveyee_list` ADD FOREIGN KEY (`surveyor_user_id`) REFERENCES `users` (`id`);
+
 ALTER TABLE `groups` ADD FOREIGN KEY (`id`) REFERENCES `users_groups` (`groups_id`);
-ALTER TABLE `surveys` ADD FOREIGN KEY (`surveyor_id`) REFERENCES `users` (`id`);
+
+ALTER TABLE `surveys` ADD FOREIGN KEY (`surveyor_user_id`) REFERENCES `users` (`id`);
+
 ALTER TABLE `surveys` ADD FOREIGN KEY (`surveyor_group_id`) REFERENCES `groups` (`id`);
+
 ALTER TABLE `groups_meta` ADD FOREIGN KEY (`groups_id`) REFERENCES `groups` (`id`);
+
+ALTER TABLE `surveyee_list` ADD FOREIGN KEY (`surveyor_group_id`) REFERENCES `groups` (`id`);
+
 ALTER TABLE `survey_responses` ADD FOREIGN KEY (`survey_id`) REFERENCES `surveys` (`id`);

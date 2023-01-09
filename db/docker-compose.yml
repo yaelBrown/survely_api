@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+  Survely_db:
+    container_name: Survely_db
+    ports: 
+      - 3307:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=passwordpassword
+    image: mysql:latest

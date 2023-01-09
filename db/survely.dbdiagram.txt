@@ -1,0 +1,73 @@
+Table users {
+  id int [pk]
+  email varchar
+  name varchar
+  password varchar
+  last_login datetime
+  created_date datetime
+}
+
+Table users_meta {
+  id int [pk]
+  user_id int
+  last_login datetime
+  created_date datetime
+  service_level enum
+  surveys_created_count int
+  groups_created_count int
+}
+
+Table users_groups {
+  id int [pk]
+  user_id int
+  groups_id int
+  can_read boolean
+  can_create boolean
+  can_delete boolean
+  can_edit boolean
+  can_add_people boolean
+  can_rem_people boolean
+  can_edit_people boolean
+}
+
+Table groups {
+  id int [pk]
+  name varchar
+  admin_id int
+}
+
+Table groups_meta {
+  id int [pk]
+  groups_id int
+  created_date datetime
+}
+
+Table surveys {
+  id int [pk]
+  surveyor_id int
+  surveyor_group_id int
+  survey_name varchar
+  survey_date datetime
+  survey_is_active boolean
+  surveyee_text json
+  surveyee_whatsapp json
+  surveyee_email json
+  survey_questions json
+}
+
+Table survey_responses {
+  id int [pk]
+  survey_id int
+  surveyee_id varchar
+  question_id varchar
+  response varchar
+  responded_date datetime
+}
+
+Ref: "users"."id" - "users_groups"."user_id"
+Ref: "users"."id" - "users_meta"."user_id"
+Ref: "users_groups"."groups_id" - "groups"."id"
+Ref: "users"."id" < "surveys"."surveyor_id"
+Ref: "groups"."id" < "surveys"."surveyor_group_id"
+Ref: "groups"."id" - "groups_meta"."groups_id"
+Ref: "surveys"."id" < "survey_responses"."survey_id"

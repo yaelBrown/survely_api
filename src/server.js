@@ -10,8 +10,6 @@ fastify.get('/test', (req, res) => {
   res.send({msg: 'ok'})
 })
 
-// Register multiple routes
-// https://stackoverflow.com/questions/57589620/how-to-assign-routes-within-a-base-route-in-fastify
 fastify.register(require(`./${API_VER}/routes/survey/surveyroutes`), {prefix: `${API_VER}/survey`})
 
 fastify.listen({ port: PORT }, (err, addr) => {

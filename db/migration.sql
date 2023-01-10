@@ -3,7 +3,7 @@ create database survely;
 use survely;
 
 CREATE TABLE `users` (
-  `id` int unsigned PRIMARY KEY,
+  `id` int unsigned AUTO_INCREMENT PRIMARY KEY,
   `email` varchar(255) UNIQUE NOT NULL,
   `name` varchar(255),
   `password` varchar(255) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE `users` (
 );
 
 CREATE TABLE `users_meta` (
-  `id` int PRIMARY KEY,
+  `id` int unsigned AUTO_INCREMENT PRIMARY KEY,
   `user_id` int unsigned NOT NULL UNIQUE,
   `last_login` datetime,
   `created_date` datetime,
@@ -21,7 +21,7 @@ CREATE TABLE `users_meta` (
 );
 
 CREATE TABLE `users_groups` (
-  `id` int PRIMARY KEY,
+  `id` int unsigned AUTO_INCREMENT PRIMARY KEY,
   `user_id` int unsigned NOT NULL,
   `groups_id` int unsigned NOT NULL,
   `can_read` boolean NOT NULL,
@@ -34,19 +34,19 @@ CREATE TABLE `users_groups` (
 );
 
 CREATE TABLE `groups` (
-  `id` int unsigned PRIMARY KEY,
+  `id` int unsigned AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(255) NOT NULL,
   `admin_id` int NOT NULL
 );
 
 CREATE TABLE `groups_meta` (
-  `id` int unsigned PRIMARY KEY,
+  `id` int unsigned AUTO_INCREMENT PRIMARY KEY,
   `groups_id` int unsigned NOT NULL,
   `created_date` datetime
 );
 
 CREATE TABLE `surveys` (
-  `id` int unsigned PRIMARY KEY,
+  `id` int unsigned AUTO_INCREMENT PRIMARY KEY,
   `surveyor_user_id` int unsigned,
   `surveyor_group_id` int unsigned,
   `survey_name` varchar(255) NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE `surveys` (
 );
 
 CREATE TABLE `survey_responses` (
-  `id` int PRIMARY KEY,
+  `id` int unsigned AUTO_INCREMENT PRIMARY KEY,
   `survey_id` int unsigned NOT NULL,
   `surveyee_id` varchar(255),
   `question_id` varchar(255) NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `survey_responses` (
 );
 
 CREATE TABLE `surveyee_list` (
-  `id` int PRIMARY KEY,
+  `id` int unsigned AUTO_INCREMENT PRIMARY KEY,
   `surveyor_user_id` int unsigned NOT NULL,
   `surveyor_group_id` int unsigned,
   `surveyee_text` json,

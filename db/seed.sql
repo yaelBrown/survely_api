@@ -5,11 +5,13 @@ use survely;
 -- insert into users
 insert into users (email, name, password) values ('admin', 'admin1', 'password');
 
-
-
-
-
 select * from users;
+
+-- Survey 
+-- insert into surveys
+insert into surveys (surveyor_user_id, survey_name) values (1, 'Demo Survey');
+
+select * from surveys;
 
 
 
@@ -20,11 +22,7 @@ CREATE TABLE `surveys` (
   `surveyor_group_id` int unsigned,
   `survey_name` varchar(255) NOT NULL,
   `survey_date` datetime,
-  `survey_is_active` boolean DEFAULT false,
-  `surveyee_text` json,
-  `surveyee_whatsapp` json,
-  `surveyee_email` json,
-  `survey_questions` json
+  `survey_is_active` boolean DEFAULT false
 );
 
 

@@ -51,11 +51,14 @@ CREATE TABLE `surveys` (
   `surveyor_group_id` int unsigned,
   `survey_name` varchar(255) NOT NULL,
   `survey_date` datetime,
-  `survey_is_active` boolean DEFAULT false,
-  `surveyee_text` json,
-  `surveyee_whatsapp` json,
-  `surveyee_email` json,
-  `survey_questions` json
+  `survey_is_active` boolean DEFAULT false
+);
+
+CREATE TABLE `survey_questions` (
+  `id` int unsigned AUTO_INCREMENT PRIMARY KEY,
+  `survey_id` int unsigned,
+  `question` longtext NOT NULL,
+  `question_order` int NOT NULL
 );
 
 CREATE TABLE `survey_responses` (
@@ -67,7 +70,16 @@ CREATE TABLE `survey_responses` (
   `responded_date` datetime
 );
 
-CREATE TABLE `surveyee_list` (
+CREATE TABLE `surveyees` (
+  `id` int unsigned AUTO_INCREMENT PRIMARY KEY,
+  `path` varchar(50) NOT NULL, 
+  `survey_id` int unsigned NOT NULL,
+  `surveyee_mobile` int,
+  `surveyee_whatsapp` int,
+  `surveyee_email` int
+);
+
+CREATE TABLE `surveyee_lists` (
   `id` int unsigned AUTO_INCREMENT PRIMARY KEY,
   `surveyor_user_id` int unsigned NOT NULL,
   `surveyor_group_id` int unsigned,

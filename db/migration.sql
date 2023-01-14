@@ -64,7 +64,7 @@ CREATE TABLE `survey_questions` (
 CREATE TABLE `survey_responses` (
   `id` int unsigned AUTO_INCREMENT PRIMARY KEY,
   `survey_id` int unsigned NOT NULL,
-  `surveyee_id` varchar(255),
+  `surveyee_id` int unsigned,
   `question_id` varchar(255) NOT NULL,
   `response` varchar(255) NOT NULL,
   `responded_date` datetime
@@ -92,7 +92,7 @@ ALTER TABLE `users_groups` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 
 ALTER TABLE `users_meta` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
-ALTER TABLE `surveyee_list` ADD FOREIGN KEY (`surveyor_user_id`) REFERENCES `users` (`id`);
+ALTER TABLE `surveyee_lists` ADD FOREIGN KEY (`surveyor_user_id`) REFERENCES `users` (`id`);
 
 ALTER TABLE `users_groups` ADD FOREIGN KEY (`groups_id`) REFERENCES `groups` (`id`);
 
@@ -102,6 +102,12 @@ ALTER TABLE `surveys` ADD FOREIGN KEY (`surveyor_group_id`) REFERENCES `groups` 
 
 ALTER TABLE `groups_meta` ADD FOREIGN KEY (`groups_id`) REFERENCES `groups` (`id`);
 
-ALTER TABLE `surveyee_list` ADD FOREIGN KEY (`surveyor_group_id`) REFERENCES `groups` (`id`);
+ALTER TABLE `surveyees` ADD FOREIGN KEY (`survey_id`) REFERENCES `surveys` (`id`);
+
+ALTER TABLE `surveyee_lists` ADD FOREIGN KEY (`surveyor_group_id`) REFERENCES `groups` (`id`);
 
 ALTER TABLE `survey_responses` ADD FOREIGN KEY (`survey_id`) REFERENCES `surveys` (`id`);
+
+ALTER TABLE `survey_responses` ADD FOREIGN KEY (`surveyee_id`) REFERENCES `surveyees` (`id`);
+
+ALTER TABLE `survey_questions` ADD FOREIGN KEY (`survey_id`) REFERENCES `surveys` (`id`);

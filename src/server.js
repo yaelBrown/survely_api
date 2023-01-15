@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const fastify = require('fastify')({
   logger: true
 })
@@ -19,6 +21,8 @@ fastify.register(require('@fastify/cors'), (instance) => {
 
 const PORT = 3001
 const API_VER = 'v1'
+
+require(`./${API_VER}/db/config`).db;
 
 // test route 
 fastify.get('/test', (req, res) => {

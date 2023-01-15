@@ -1,7 +1,9 @@
 import { ASCII_LETTERS } from "../utils/constants";
 
 class SurveyService {
-  generateSurveyPath() {
+  
+  
+  _generateSurveyPath() {
     const len = 8
     let out = ""
     for (let i = 0; i < len; i++) {

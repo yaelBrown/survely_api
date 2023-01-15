@@ -13,6 +13,13 @@ insert into surveys (surveyor_user_id, survey_name) values (1, 'Demo Survey');
 
 select * from surveys;
 
+-- Surveyee
+-- insert into surveyee
+insert into surveyees (path, survey_id, surveyee_email) values ('fjedqSQJ', 1, 'yaelrbrowndev@gmail.com');
+
+-- get survey by path
+select * from surveys where path 
+
 
 
 

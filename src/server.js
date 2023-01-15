@@ -1,4 +1,6 @@
-require('dotenv').config()
+// require('dotenv').config()
+import config from 'dotenv'
+import fastify from 'fastify'
 
 const fastify = require('fastify')({
   logger: true

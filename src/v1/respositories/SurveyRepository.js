@@ -1,4 +1,4 @@
-import db from "../db/config";
+const db = require("../db/config")
 
 class SurveyRepository {
   getInitialSurvey(path) {}
@@ -15,9 +15,5 @@ class SurveyRepository {
       return err
     }
   }
-
-
   
 }
-
-export default SurveyRepository

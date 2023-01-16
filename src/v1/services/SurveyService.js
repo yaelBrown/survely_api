@@ -1,5 +1,5 @@
-import { ASCII_LETTERS, PATH_LENGTH } from "../utils/constants";
-import SurveyRepository from "../respositories/SurveyRepository";
+const Constants = require('../utils/constants')
+const SurveyRepository = require("../respositories/SurveyRepository")
 
 class SurveyService {
   _generateSurveyPath() {
@@ -17,4 +17,3 @@ class SurveyService {
   }
 }
 
-export default SurveyService

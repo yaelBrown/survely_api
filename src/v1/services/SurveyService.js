@@ -1,6 +1,8 @@
 const Constants = require('../utils/constants')
 const SurveyRepository = require("../respositories/SurveyRepository")
 
+const sr = new SurveyRepository()
+
 class SurveyService {
   _generateSurveyPath() {
     const len = PATH_LENGTH
@@ -13,7 +15,10 @@ class SurveyService {
 
   async getSurvey(p) {
     p = p.trim()
-    return await SurveyRepository.findByPath(p)
+    const out = await sr.findByPath(p)
+    console.log({out})
+    return out
   }
 }
 
+module.exports = { SurveyService }

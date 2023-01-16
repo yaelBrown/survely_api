@@ -1,36 +1,36 @@
-// import SurveyService from "../../services/SurveyService"
+const { SurveyService } = require("../../services/SurveyService");
 
-const { default: SurveyService } = require("../../services/SurveyService")
+const ss = new SurveyService()
 
-async function surveyRoutes(fastify) {
-  fastify.get('/', async (req, res) => {
-    return { msg: "Survey Route ok" }
-  })
-  fastify.get('/s/:surveyee_id', async (req, res) => {
-    const { surveyee_id } = req.params
+const surveyRoutes = async (fastify) => {
+  fastify.get("/", async (req, res) => {
+    return { msg: "Survey Route ok" };
+  });
+  fastify.get("/:surveyee_id", async (req, res) => {
+    const { surveyee_id } = req.params;
     
     if (surveyee_id === undefined) {
-      return { msg: 'invalid surveyee_id'}
+      return { msg: "invalid surveyee_id" };
     }
 
     try {
-      const data = await SurveyService.getSurvey(p)
       return {
         msg: "ok",
-        data
-      }
-    } catch(err) {
-      return { 
+        daasdfta: await ss.getSurvey(surveyee_id),
+      };
+    } catch (err) {
+      console.log(err)
+      return {
         msg: "Error in request",
-        err 
-      }
+        err,
+      };
     }
 
-    return { msg: surveyee_id }
-  })
-  fastify.post('/info', async (req, res) => {
-    
-  })
+    return { msg: surveyee_id };
+  });
+  fastify.post("/info", async (req, res) => {});
+
 }
 
-module.exports = surveyRoutes
+module.exports = surveyRoutes;
+

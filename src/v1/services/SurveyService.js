@@ -1,7 +1,4 @@
 const Constants = require('../utils/constants')
-const SurveyRepository = require("../respositories/SurveyRepository")
-
-const sr = new SurveyRepository()
 
 class SurveyService {
   _generateSurveyPath() {
@@ -14,10 +11,7 @@ class SurveyService {
   }
 
   async getSurvey(p) {
-    p = p.trim()
-    const out = await sr.findByPath(p)
-    console.log({out})
-    return out
+    return "cookies"
   }
 }
 

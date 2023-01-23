@@ -19,10 +19,14 @@ fastify.register(require('@fastify/cors'), (instance) => {
   }
 })
 
+fastify.register(require('@fastify/mysql'), {
+  connectionString: `mysql://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`
+})
+
 const PORT = 3001
 const API_VER = 'v1'
 
-require(`./${API_VER}/db/config`).db;
+// require(`./${API_VER}/db/config`).db;
 
 // test route 
 fastify.get('/test', (req, res) => {

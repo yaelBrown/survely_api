@@ -18,6 +18,7 @@ insert into surveyees (path, survey_id, surveyee_email) values ('fjedqSQJ', 1, '
 insert into surveyees (path, survey_id, surveyee_name, surveyee_email) values ('fcmaicIbL', 1, 'Steve', 'test444@mailinator.com');
 
 select * from surveyees where path = 'fjedqSQJ';
+SELECT * FROM surveyees WHERE PATH = 'cookies';
 
 select * from surveyees;
 

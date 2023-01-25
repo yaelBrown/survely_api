@@ -9,10 +9,6 @@ class SurveyService {
     }
     return out
   }
-
-  async getSurvey(p) {
-    return "cookies"
-  }
 }
 
 module.exports = { SurveyService }

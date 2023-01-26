@@ -20,6 +20,7 @@ class SurveyService {
       surveyee_name: data[0].surveyee_name,
       surveyor_user_id: data[0].surveyor_user_id,
       surveyor_group_id: data[0].surveyor_group_id,
+      survey_id: data[0].survey_id,
       survey_name: data[0].survey_name,
       survey_date: data[0].survey_date,
       survey_is_active: data[0].survey_is_active,

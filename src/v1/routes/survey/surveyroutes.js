@@ -24,6 +24,7 @@ const surveyRoutes = async (fastify) => {
           surveys.survey_name, 
           surveys.survey_date, 
           surveys.survey_is_active,
+          surveys.id AS survey_id,
           survey_questions.id AS survey_question_id,
           survey_questions.question,
           survey_questions.question_order,
@@ -44,6 +45,10 @@ const surveyRoutes = async (fastify) => {
     )
     
   });
+
+  fastify.post("/:survey_id", (req, reply) => {
+    // handle payload
+  })
 
   fastify.post("/info", (req, res) => {});
 }

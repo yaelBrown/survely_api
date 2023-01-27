@@ -26,8 +26,9 @@ class SurveyService {
       survey_is_active: data[0].survey_is_active,
     }
     
-    let tempQ = []
-    let tempR = []
+    const tempQ = []
+    const tempR = []
+    const tempRset = new Set()
 
     data.forEach((e) => {
       if (e.survey_question_id != null) {
@@ -41,13 +42,16 @@ class SurveyService {
       }
   
       if (e.survey_response_id != null) {
-        const temp_r = {
-          response_id: e.survey_response_id,
-          response: e.response,
-          responded_date: e.responded_date
+        if (!(tempRset.has(e.survey_response_id))) {
+          const temp_r = {
+            response_id: e.survey_response_id,
+            response: e.response,
+            responded_date: e.responded_date
+          }
+          
+          tempRset.add(e.survey_response_id)
+          tempR.push(temp_r)
         }
-        
-        tempR.push(temp_r)
       }
     })
     
@@ -55,7 +59,7 @@ class SurveyService {
     out.questions_length = tempQ.length
     out.responses = tempR.reverse()
     out.responses_length = tempR.length
-    
+
     return out
   }
 }

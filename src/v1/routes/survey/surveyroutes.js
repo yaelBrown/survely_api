@@ -35,11 +35,12 @@ const surveyRoutes = async (fastify) => {
         FROM surveyees 
         LEFT JOIN surveys ON surveyees.survey_id = surveys.id 
         LEFT JOIN survey_questions ON surveyees.survey_id = survey_questions.survey_id
-        LEFT JOIN survey_responses ON surveyees.path = survey_responses.surveyee_id
-        where surveyees.path = ?
+        LEFT JOIN survey_responses ON surveyees.id = survey_responses.surveyee_id
+        WHERE surveyees.path = ?
       `, 
       [surveyee_id],
       function onResult(err, data) {
+        console.log(data)
         reply.send(ss.getSurveyFromPathMapper(data, surveyee_id) || err)
       }
     )
@@ -47,7 +48,23 @@ const surveyRoutes = async (fastify) => {
   });
 
   fastify.post("/:survey_id", (req, reply) => {
-    // handle payload
+    const { survey_id } = req.params
+    const body = req.body
+    if (!(body.survey_id), !(body.surveyee_id), !(body.question_id), !(body.response)) {
+      reply.send({msg: "invalid json body", body})
+    }
+    fastify.mysql.query(
+      `
+        INSERT INTO 
+          survey_responses (survey_id, surveyee_id, question_id, response, responded_date) 
+        VALUES 
+          (?,?,?,?,now())
+      `,
+      [survey_id, body.surveyee_id, body.question_id, body.response],
+      function onResult(err, data) {
+        reply.send(err || data)
+      }
+    )
   })
 
   fastify.post("/info", (req, res) => {});

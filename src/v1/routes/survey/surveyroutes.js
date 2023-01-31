@@ -40,7 +40,6 @@ const surveyRoutes = async (fastify) => {
       `, 
       [surveyee_id],
       function onResult(err, data) {
-        console.log(data)
         reply.send(ss.getSurveyFromPathMapper(data, surveyee_id) || err)
       }
     )

@@ -45,6 +45,7 @@ class SurveyService {
         if (!(tempRset.has(e.survey_response_id))) {
           const temp_r = {
             response_id: e.survey_response_id,
+            response_question_id: e.question_id,
             response: e.response,
             responded_date: e.responded_date
           }
